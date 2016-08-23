@@ -29,19 +29,23 @@ Feature: Resource
       | Celeste | Group 01 | member               | Active            |
     And "Tags" terms:
       | name    |
-      | world   |
-      | results |
+      | Health  |
+      | Gov     |
     And datasets:
       | title      | publisher | author  | published        | tags     | description |
-      | Dataset 01 | Group 01  | Gabriel | Yes              | world    | Test        |
-      | Dataset 02 | Group 02  | Celeste | Yes              | results  | Test        |
+      | Dataset 01 | Group 01  | Gabriel | Yes              | Health   | Test        |
+      | Dataset 02 | Group 02  | Celeste | Yes              | Gov      | Test        |
+    And "Format" terms:
+      | name    |
+      | cvs     |
+      | XLS     |
     And resources:
       | title       | publisher | format | dataset    | author   | published | description |
-      | Resource 01 | Group 01  | csv    | Dataset 01 | Katie    | Yes       | No          |
-      | Resource 02 | Group 01  | zip    | Dataset 01 | Katie    | Yes       | No          |
-      | Resource 03 | Group 02  | zip    | Dataset 02 | Celeste  | No        | Yes         |
-      | Resource 04 | Group 01  | csv    | Dataset 01 | Katie    | No        | Yes         |
-      | Resource 05 | Group 02  | zip    | Dataset 02 | Celeste  | Yes       | Yes         |
+      | Resource 01 | Group 01  | cvs    | Dataset 01 | Katie    | Yes       | No          |
+      | Resource 02 | Group 01  | xls    | Dataset 01 | Katie    | Yes       | No          |
+      | Resource 03 | Group 02  | xls    | Dataset 02 | Celeste  | No        | Yes         |
+      | Resource 04 | Group 01  | cvs    | Dataset 01 | Katie    | No        | Yes         |
+      | Resource 05 | Group 02  | xls    | Dataset 02 | Celeste  | Yes       | Yes         |
 
   # TODO: Change to use Workbench instead of /content
   @noworkflow

@@ -6,24 +6,37 @@ Feature: Homepage
   @customizable
   Scenario: Viewing the site title
     Given I am on the homepage
-    Then I should see "Welcome to DKAN"
+    Then I should see "Welcome to the DKAN Demo"
+
+  @customizable
+  Scenario: Viewing default content
+    Given I am on the homepage
+    Then I should see "Geospatial Data Explorer Examples"
 
   @customizable
   Scenario: Viewing top menu
     Given I am on the homepage
     Then I should see "Datasets"
-    And I should see "Groups"
-    And I should see "About"
-    And I should see "Topics"
-    And I should see "Stories"
-    And I should see "Dashboards"
+    Then I should see "Groups"
+    Then I should see "About"
+    Then I should see "Topics"
 
   @customizable
-  Scenario: Viewing sections
+  Scenario: Viewing footer
     Given I am on the homepage
-    Then I should see "Latest Data Stories" in the "content" region
-    And I should see "Groups" in the "content" region
-    And I should see "Dashboards" in the "content" region
+    Then I should see "Powered by DKAN, a project of NuCivic"
+
+  @customizable
+  Scenario: Viewing tags
+    Given I am on the homepage
+    When I click "politics"
+    Then I should see "Afghanistan Election Districts"
+
+  @customizable
+  Scenario: Viewing topics
+    Given I am on the homepage
+    When I click "Public Safety"
+    Then I should see "Wisconsin Polling Places"
 
   @api @javascript @customizable
   Scenario: See "Add Dataset"

@@ -36,15 +36,13 @@ function dkan_additional_setup() {
       array('dkan_revert_feature', array('dkan_permissions', array('roles_permissions'))),
       array('dkan_revert_feature', array('dkan_sitewide', array('variable'))),
       array('dkan_revert_feature', array('dkan_sitewide_menu', array('custom_menu', 'menu_links'))),
-      // The module needs to be enabled after the revert on 'dkan_dataset_groups' is done.
-      // If not a warning will appear during install about og_group_ref not being present.
-      array('dkan_enable_optional_module', array('dkan_default_content')),
       array('dkan_add_default_menu_links', array()),
       array('dkan_build_menu_links', array()),
       array('dkan_flush_image_styles', array()),
       array('dkan_colorizer_reset', array()),
       array('dkan_misc_variables_set', array()),
       array('dkan_group_link_delete', array()),
+      array('dkan_install_default_content', array()),
       array('dkan_set_adminrole', array()),
       array('dkan_set_roleassign_roles', array()),
     ),
@@ -57,7 +55,7 @@ function dkan_theme_config(&$context) {
   theme_enable(array('nuboot_radix'));
   theme_enable(array('seven'));
   variable_set('theme_default', 'nuboot_radix');
-  variable_set('admin_theme', '0');
+  variable_set('admin_theme', 'nuboot_radix');
 
   // Disable the default Bartik theme
   theme_disable(array('bartik'));
@@ -126,6 +124,26 @@ function dkan_revert_feature($feature, $components, &$context) {
  */
 function dkan_add_default_menu_links(&$context) {
   $menu_links = array();
+  // Exported menu link: main-menu_about:node/1
+  $menu_links['main-menu_about:node/1'] = array(
+    'menu_name' => 'main-menu',
+    'link_path' => 'node/1',
+    'router_path' => 'node/%',
+    'link_title' => 'About',
+    'options' => array(
+      'attributes' => array(
+        'title' => '',
+      ),
+      'identifier' => 'main-menu_about:node/1',
+    ),
+    'module' => 'menu',
+    'hidden' => 0,
+    'external' => 0,
+    'has_children' => 0,
+    'expanded' => 0,
+    'weight' => 0,
+    'customized' => 1,
+  );
   // Exported menu link: main-menu_dataset:search/type/dataset
   $menu_links['main-menu_dataset:search/type/dataset'] = array(
     'menu_name' => 'main-menu',
@@ -146,26 +164,27 @@ function dkan_add_default_menu_links(&$context) {
     'weight' => -1,
     'customized' => 1,
   );
+  // To Do: Add 'Dashboards' link to main menu when new default content is deployed.
   // Exported menu link: main-menu_dataset:search/type/data_dashboard
-  $menu_links['main-menu_dashboard:search/type/data_dashboard'] = array(
-    'menu_name' => 'main-menu',
-    'link_path' => 'search/type/data_dashboard',
-    'router_path' => 'search/type/data_dashboard',
-    'link_title' => 'Dashboards',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'identifier' => 'main-menu_dashboard:search/type/data_dashboard',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 4,
-    'customized' => 1,
-  );
+  // $menu_links['main-menu_dashboard:search/type/data_dashboard'] = array(
+  //   'menu_name' => 'main-menu',
+  //   'link_path' => 'search/type/data_dashboard',
+  //   'router_path' => 'search/type/data_dashboard',
+  //   'link_title' => 'Dashboards',
+  //   'options' => array(
+  //     'attributes' => array(
+  //       'title' => '',
+  //     ),
+  //     'identifier' => 'main-menu_dashboard:search/type/data_dashboard',
+  //   ),
+  //   'module' => 'menu',
+  //   'hidden' => 0,
+  //   'external' => 0,
+  //   'has_children' => 0,
+  //   'expanded' => 0,
+  //   'weight' => 4,
+  //   'customized' => 1,
+  // );
   // Exported menu link: main-menu_stories:stories
   $menu_links['main-menu_stories:stories'] = array(
     'menu_name' => 'main-menu',
@@ -206,8 +225,9 @@ function dkan_add_default_menu_links(&$context) {
     'weight' => 2,
     'customized' => 1,
   );
+  t('About');
   t('Datasets');
-  t('Dashboards');
+  //t('Dashboards');
   t('Stories');
   t('Groups');
 
@@ -266,6 +286,7 @@ function dkan_colorizer_reset(&$context) {
 function dkan_misc_variables_set(&$context) {
   $context['message'] = t('Setting misc DKAN variables');
   variable_set('honeypot_form_user_register_form', 1);
+  variable_set('site_frontpage', 'welcome');
   variable_set('page_manager_node_view_disabled', FALSE);
   variable_set('page_manager_node_edit_disabled', FALSE);
   variable_set('page_manager_user_view_disabled', FALSE);
@@ -281,6 +302,11 @@ function dkan_misc_variables_set(&$context) {
     'dataset' => TRUE,
   );
   variable_set('views_defaults', $views_disable);
+}
+
+function dkan_install_default_content(&$context) {
+  $context['message'] = t('Creating default content');
+  dkan_default_content_base_install();
 }
 
 /**

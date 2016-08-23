@@ -36,6 +36,8 @@ Feature: Dataset Features
       | Katie   | Group 02 | member               | Active            |
     And "Tags" terms:
       | name   |
+      | Health |
+      | Gov    |
       | price1 |
       | election1 |
     And datasets:
@@ -52,8 +54,8 @@ Feature: Dataset Features
     And resources:
       | title       | publisher | format | author | published | dataset    | description |
       | Resource 01 | Group 01  | csv    | Katie  | Yes       | Dataset 01 |             |
-      | Resource 02 | Group 01  | zip    | Katie  | Yes       | Dataset 01 |             |
-      | Resource 03 | Group 01  | zip    | Katie  | Yes       | Dataset 02 |             |
+      | Resource 02 | Group 01  | html   | Katie  | Yes       | Dataset 01 |             |
+      | Resource 03 | Group 01  | html   | Katie  | Yes       | Dataset 02 |             |
       | Resource 04 |           | csv    | Katie  | Yes       |            |             |
       | Resource 05 |           | csv    | Katie  | Yes       | Dataset 08 |             |
       | Resource 06 | Group 02  | csv    | Katie  | Yes       | Dataset 09 |             |

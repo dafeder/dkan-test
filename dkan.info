@@ -1,7 +1,7 @@
 name = DKAN
 core = 7.x
 exclusive = TRUE
-version = 7.x-1.x-dev
+version = 7.x-1.12.2
 project = dkan
 
 ; Core
@@ -108,9 +108,10 @@ dependencies[] = open_data_schema_map
 ; DKAN Features
 dependencies[] = dkan_sitewide_menu
 dependencies[] = dkan_sitewide_user
+dependencies[] = dkan_default_content
+dependencies[] = dkan_sitewide_demo_front
 dependencies[] = dkan_dataset_groups
 dependencies[] = dkan_dataset_groups_perms
-dependencies[] = dkan_dataset_rest_api
 dependencies[] = dkan_sitewide_panels
 dependencies[] = dkan_sitewide_search_db
 dependencies[] = dkan_sitewide_panelizer
@@ -118,7 +119,6 @@ dependencies[] = dkan_data_dashboard
 dependencies[] = dkan_data_story
 dependencies[] = dkan_topics
 dependencies[] = dkan_permissions
-dependencies[] = dkan_ipe
 
 ; DKAN Core Modules
 dependencies[] = dkan_sitewide
